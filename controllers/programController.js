@@ -129,3 +129,14 @@ export const getPatientPrograms = async (req, res) => {
         res.status(500).json({ msg: "Server error", error: error.message });
     }
 };
+
+export const getProgramPatients = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const patients = await User.find({ enrolledPrograms: id }).select("name email role");
+        res.status(200).json(patients);
+    } catch (error) {
+        console.error("Error getting program patients:", error);
+        res.status(500).json({ msg: "Server error", error: error.message });
+    }
+};

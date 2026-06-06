@@ -6,19 +6,14 @@ dotenv.config();
 
 const run = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI);
-
+    await mongoose.connect(process.env.MONGO_URI);
     console.log("Connected to MongoDB");
-
-    //const result = await TeamMember.deleteMany({
-      //name: /^Prince Kumar$/i,
-   // });
-
+    const result = await TeamMember.deleteMany({ name: /^Prince Kumar$/i });
     console.log("Deleted count:", result.deletedCount);
   } catch (error) {
     console.error("Error:", error);
   } finally {
-    await mongoose.disconnect();
+    mongoose.disconnect();
   }
 };
 

@@ -7,7 +7,17 @@ const doctorProfileSchema = new mongoose.Schema({
     rating: { type: Number, default: 0 },
     fees: { type: Number, default: 0 },
     about: { type: String, default: "" },
-    specialization: { type: String, default: "Physiotherapist" }
+    specialization: { type: String, default: "Physiotherapist" },
+
+    // ── New onboarding fields ──
+    bio: { type: String, default: "" },
+    licenceNumber: { type: String, default: "" },
+    hospitalName: { type: String, default: "" },
+    availableDays: { type: [String], default: [] },
+    availableTimeStart: { type: String, default: "" },
+    availableTimeEnd: { type: String, default: "" },
+    languages: { type: [String], default: [] },
+    isAvailable: { type: Boolean, default: false }
 }, { timestamps: true });
 
 export default mongoose.model("DoctorProfile", doctorProfileSchema);

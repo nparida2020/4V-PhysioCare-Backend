@@ -1,34 +1,21 @@
 import express from "express";
 import jwt from "jsonwebtoken";
-import { signup, login, getUser, verifyEmail, completeProfile } from "../controllers/authController.js";
+import { signup, login, getUser, verifyEmail, completeProfile, verifyOtp, resendOtp, forgotPassword, resetPassword } from "../controllers/authController.js";
 import passport from "../config/googleAuthConfig.js";
-import { sendVerificationEmail } from "../config/emailService.js";
 
 const router = express.Router();
 
-// ── Debug: test email sending on Render ─────────────────────────────────────
-router.get("/test-email", async (req, res) => {
-  try {
-    const to = req.query.to || process.env.SMTP_USER;
-    console.log("[test-email] Sending to:", to);
-    console.log("[test-email] SMTP_HOST:", process.env.SMTP_HOST);
-    console.log("[test-email] SMTP_USER:", process.env.SMTP_USER);
-    console.log("[test-email] SMTP_PASS set:", !!process.env.SMTP_PASS);
-    console.log("[test-email] FRONTEND_URL:", process.env.FRONTEND_URL);
-    await sendVerificationEmail(to, "test-token-12345");
-    res.json({ success: true, msg: `Test email sent to ${to}` });
-  } catch (err) {
-    console.error("[test-email] ERROR:", err);
-    res.status(500).json({ success: false, error: err.message, code: err.code });
-  }
-});
-
-// ── Existing email/password routes ──────────────────────────────────────────
+// ── Email/password routes ─────────────────────────────────────────────────────
 router.post("/signup", signup);
 router.post("/login", login);
-router.get("/verify-email/:token", verifyEmail);
+router.post("/verify-otp", verifyOtp);
+router.post("/resend-otp", resendOtp);
+router.post("/forgot-password", forgotPassword);
+router.post("/reset-password", resetPassword);
+router.get("/verify-email/:token", verifyEmail);   // legacy link support
 router.patch("/:id/complete-profile", completeProfile);
 router.get("/:id", getUser);
+
 
 // ── Google OAuth ─────────────────────────────────────────────────────────────
 // Initiate OAuth — role is carried via `state` param so the callback knows it

@@ -7,7 +7,8 @@ import {
     getProgramVideos,
     updateVideo,
     deleteVideo,
-    getGeneralVideosByDoctor
+    getGeneralVideosByDoctor,
+    logSession
 } from "../controllers/videoController.js";
 
 const router = express.Router();
@@ -34,5 +35,7 @@ router.get("/general/doctor/:doctorId", getGeneralVideosByDoctor);
 router.get("/program/:programId", getProgramVideos);
 router.put("/:id", updateVideo);
 router.delete("/:id", deleteVideo);
+
+router.post("/log-session", logSession);
 
 export default router;

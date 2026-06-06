@@ -1,4 +1,5 @@
 import Video from "../models/Video.js";
+import SessionLog from "../models/SessionLog.js";
 import fs from "fs";
 import path from "path";
 
@@ -135,6 +136,28 @@ export const getGeneralVideosByDoctor = async (req, res) => {
         res.status(200).json(videos);
     } catch (error) {
         console.error("Error fetching general videos by doctor:", error);
+        res.status(500).json({ msg: "Server error", error: error.message });
+    }
+};
+
+// Log a video session
+export const logSession = async (req, res) => {
+    try {
+        const { patientId, videoId, painLevel } = req.body;
+        
+        if (!patientId || painLevel === undefined) {
+            return res.status(400).json({ msg: "patientId and painLevel are required" });
+        }
+        
+        const log = await SessionLog.create({
+            patientId,
+            videoId,
+            painLevel
+        });
+
+        res.status(201).json({ msg: "Session logged successfully", log });
+    } catch (error) {
+        console.error("Error logging session:", error);
         res.status(500).json({ msg: "Server error", error: error.message });
     }
 };
