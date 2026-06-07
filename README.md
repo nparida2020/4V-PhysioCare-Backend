@@ -520,8 +520,5 @@ doctorId (ref), patientId (ref), note
 
 ## 📄 License
 
-This project is built for educational purposes as part of an internship program.
+This project is built by 4vDatasolution-ai.com @2026.
 
----
-
-> Made with ❤️ by the PhysioCare Team
