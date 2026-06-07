@@ -518,19 +518,6 @@ doctorId (ref), patientId (ref), note
 
 ---
 
-## 👨‍💻 Team
-
-| Name | Role | Roll Number |
-|---|---|---|
-| Prince Baghal | Full Stack Developer | — |
-| *(Add team members)* | | |
-
-> Built as part of the Summer Internship 2026 program.
-
-<br/>
-
----
-
 ## 📄 License
 
 This project is built for educational purposes as part of an internship program.
