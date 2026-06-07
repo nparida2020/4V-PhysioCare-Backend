@@ -1,4 +1,4 @@
-# 🏥 PhysioCare — Digital Physiotherapy Management System
+# 4VPhysioCare — Digital Physiotherapy Management System
 
 > A full-stack MERN application that bridges patients and certified physiotherapists through remote access to physiotherapy services, rehabilitation programs, exercise video libraries, and appointment management.
 
@@ -18,7 +18,7 @@
 - [Database Models](#database-models)
 - [User Roles](#user-roles)
 - [Screenshots](#screenshots)
-- [Team](#team)
+
 
 <br/>
 
